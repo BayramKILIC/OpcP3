@@ -56,7 +56,7 @@ function addComment($postId, $author, $content)
     }
 }
 
-function editComment($commentId, $author, $comment)
+/* function editComment($commentId, $author, $comment)
  {
      $commentManager = new CommentManager();
 
@@ -68,4 +68,4 @@ function editComment($commentId, $author, $comment)
     else {
         header('Location: index.php');
     }  
-} 
+}  */ 
