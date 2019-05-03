@@ -1,14 +1,16 @@
 <?php
 require('controller/frontend.php');
 
+$frontendController = new FrontendController();
+
 try {
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'listPosts') {
-            listPosts();
+            $frontendController->listPosts();
         }
         elseif ($_GET['action'] == 'post') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                post();
+                $frontendController->post();
             }
             else {
                 throw new Exception('Aucun identifiant de billet envoyé');
@@ -18,16 +20,11 @@ try {
             
         }
         elseif ($_GET['action'] == 'newpost') {
-            if (!empty($_POST['title']) && !empty($_POST['content'])) {
-                    addPost($_POST['title'], $_POST['content']);
-                }
-                else {
-                    newcontent();
-                }
+            $frontendController->newContent();           
         }
     }
     else {
-        listPosts();
+        $frontendController->listPosts();
     }
 }
 catch(Exception $e) {

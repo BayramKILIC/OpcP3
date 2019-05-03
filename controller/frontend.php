@@ -4,35 +4,53 @@
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 
-function listPosts()
+
+class FrontendController
 {
-    $postManager = new PostManager(); // Création d'un objet
-    $posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
+   /** @var PostManager **/
+    private $postManager;
+
+    /**
+    * @var CommentManager
+    **/
+    private $commentManager;
+
+public function  __construct(){
+    $this->postManager = new PostManager();
+    $this->commentManager = new CommentManager();
+}
+
+   public function listPosts()
+{
+
+    $posts = $this->postManager->getPosts(); // Appel d'une fonction de cet objet
 
     require('view/frontend/listPostsView.php');
 }
 
-function newContent()
+    public function newContent()
 {
+     if (!empty($_POST['title']) && !empty($_POST['content'])) {
+                    addPost($_POST['title'], $_POST['content']);
+        }
     require('view/frontend/newContent.php');
 }
 
-function post()
+    public function post()
 {
-    $postManager = new PostManager();
-    $commentManager = new CommentManager();
+    
 
-    $post = $postManager->getPost($_GET['id']);
-    $comments = $commentManager->getComments($_GET['id']);
+    $post = $this->postManager->getPost($_GET['id']);
+    $comments = $this->commentManager->getComments($_GET['id']);
 
     require('view/frontend/postView.php');
 }
 
-function addPost($title, $content)
+    public function addPost($title, $content)
 {
-     $postManager = new PostManager();
 
-    $affectedLines = $postManager->postContent($title, $content);
+
+    $affectedLines = $this->postManager->postContent($title, $content);
 
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
@@ -42,11 +60,11 @@ function addPost($title, $content)
     }
 }
 
-function addComment($postId, $author, $content)
+    public function addComment($postId, $author, $content)
 {
-    $commentManager = new CommentManager();
 
-    $affectedLines = $commentManager->postComment($postId, $author, $comment);
+
+    $affectedLines = $this->commentManager->postComment($postId, $author, $comment);
 
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
@@ -69,3 +87,6 @@ function addComment($postId, $author, $content)
         header('Location: index.php');
     }  
 }  */ 
+ 
+
+}
