@@ -1,8 +1,10 @@
 <?php
 
+
 // Chargement des classes
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
+
 
 
 class FrontendController
@@ -20,6 +22,7 @@ public function  __construct(){
     $this->commentManager = new CommentManager();
 }
 
+
    public function listPosts()
 {
 
@@ -28,27 +31,29 @@ public function  __construct(){
     require('view/frontend/listPostsView.php');
 }
 
+
     public function newContent()
 {
      if (!empty($_POST['title']) && !empty($_POST['content'])) {
-                    addPost($_POST['title'], $_POST['content']);
+                    $this->addPost($_POST['title'], $_POST['content']);
         }
     require('view/frontend/newContent.php');
 }
 
+
+
     public function post()
-{
-    
+{    
 
     $post = $this->postManager->getPost($_GET['id']);
-    $comments = $this->commentManager->getComments($_GET['id']);
+    $comment = $this->commentManager->getComments($_GET['id']);
 
     require('view/frontend/postView.php');
 }
 
+
     public function addPost($title, $content)
 {
-
 
     $affectedLines = $this->postManager->postContent($title, $content);
 
@@ -60,7 +65,8 @@ public function  __construct(){
     }
 }
 
-    public function addComment($postId, $author, $content)
+
+    public function addComment($postId, $author, $comment)
 {
 
 

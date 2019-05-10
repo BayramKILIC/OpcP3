@@ -9,7 +9,7 @@
         <div class="col-md-6">
                 <!-- ici liste des chapitres -->
                 <p>Derniers billets du blogg :</p>
-                <em><a href="index.php?action=newpost">Ecrire un nouveau chapitre</a></em>
+
 
 
                 <?php
@@ -23,7 +23,7 @@
                         </h3>
                         
                         <p>
-                            <?= nl2br(htmlspecialchars($data['content'])) ?>
+                            <?= $data['content'] ?>
                             <br />
                             <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Lire le chapitre</a></em>
                         </p>

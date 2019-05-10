@@ -14,7 +14,7 @@
     </div>
     <div>
         <label for="content">Votre texte</label><br />
-        <textarea id="content" name="content"></textarea>
+        <textarea id="mytextarea" name="content"></textarea>
     </div>
     <div>
         <input type="submit" />

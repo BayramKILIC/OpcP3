@@ -17,6 +17,7 @@
 
 <h2>Commentaires</h2>
 
+
 <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
     <div>
         <label for="author">Auteur</label><br />
@@ -32,13 +33,23 @@
 </form>
 
 <?php
-while ($comment = $comments->fetch())
+
+while ($data = $comment->fetch())
 {
+
 ?>
-    <p><strong><?= htmlspecialchars($comment['author']) ?></strong> lee <?= $comment['comment_date_fr'] ?>
-    <a href="editComment.php?&amp;id=<?= $comment['id'] ?>">Modifier</a></p>
-    <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
-<?php
+              
+    <h3>
+        <?= htmlspecialchars($data['name']) ?>
+        <em>le <?= $data['comment_date_fr'] ?></em>
+    </h3>
+    
+    <p>
+        <?= nl2br(htmlspecialchars($data['comment'])) ?>
+        <br />
+    </p>
+                    
+                <?php
 }
 ?>
 <?php $content = ob_get_clean(); ?>
