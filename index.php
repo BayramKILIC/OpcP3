@@ -1,6 +1,7 @@
 <?php
-require('controller/frontend.php');
-require('controller/loginController.php');
+require('controller/FrontendController.php');
+require('controller/LoginController.php');
+session_start();
 
 $frontendController = new FrontendController();
 $loginController = new LoginController();
@@ -8,7 +9,7 @@ $loginController = new LoginController();
 try {
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'listPosts') {
-            $frontendController->listPosts();
+            $frontendController->listPostsPublic();
         }
         elseif ($_GET['action'] == 'post') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -17,6 +18,17 @@ try {
             else {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
+        }
+        elseif ($_GET['action'] == 'editpost') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $frontendController->editpost();
+            }
+            else {
+                throw new Exception('Aucun identifiant de billet envoyé');
+            }
+        }
+        elseif ($_GET['action'] == 'listPostsPrivate') {
+                $frontendController->listPostsPrivate();
         }
         elseif ($_GET['action'] == 'addComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {            
@@ -27,7 +39,13 @@ try {
             }
         }
         elseif ($_GET['action'] == 'newpost') {
-            $frontendController->newContent();           
+            $frontendController->newContent();
+        }
+        elseif ($_GET['action'] == 'saveeditcontent') {
+            $frontendController->saveEditContent();
+        }
+        elseif ($_GET['action'] == 'deletepost') {
+            $frontendController->deletePost();
         }
         elseif ($_GET['action'] == 'login') {
             $loginController->checkLogin();           
@@ -39,11 +57,11 @@ try {
             $loginController->changePassword();           
         }
         elseif ($_GET['action'] == 'signout') {
-            $frontendController->signout();           
+            $loginController->signout();
         }
     }
     else {
-        $frontendController->listPosts();
+        $frontendController->listPostsPublic();
     }
 }
 catch(Exception $e) {

@@ -3,10 +3,11 @@
 
 // Chargement des classes
 require_once('model/LoginManager.php');
+require_once ('controller/Controller.php');
 
 
 
-class LoginController
+class LoginController extends Controller
 {
    /** @var LoginManager **/
     private $loginManager;
@@ -18,31 +19,41 @@ class LoginController
 
     public function checkLogin() 
     {
-        $posts = $this->loginManager->getLogin();
+            $user = $this->loginManager->getLogin();
 
-         if (!empty($_POST['login']) && !empty($_POST['password'])) {
-            if ($_POST['login'] == $posts['login'] && $_POST['password'] == $posts['password']) {
-                header('Location: index.php?action=admin');       
+            if (!empty($_POST['login']) && !empty($_POST['password'])) {
+                if ($_POST['login'] == $user['login'] && $_POST['password'] == $user['password']) {
+                    $_SESSION['user'] = $user['login'];
+                    header('Location: index.php?action=admin');
+                } else {
+                    echo "connexion nok";
+                }
+            } else {
+                echo "veuillez entrer vos identifiants";
             }
-            else {
-                echo "connexion nok";
-            }
-        }
-           else {
-            echo "veuillez entrer vos identifiants";
-           }
-        require('view/frontend/login.php');
+            require('view/frontend/login.php');
     }
 
 
-    public function admin() 
+    /**
+     * @throws Exception
+     */
+    public function admin()
     {
+        $this->checkAuthentication();
+
+        // TODO Creer le dashboard
+
         $posts = $this->loginManager->getLogin();
 
         require('view/frontend/admin.php');
     }
 
+    public function signout()
+    {
 
+        require('view/frontend/signout.php');
+    }
 
     public function changePassword() 
     {
@@ -50,7 +61,8 @@ class LoginController
 
          if (!empty($_POST['password']) && !empty($_POST['newpassword1']) && !empty($_POST['newpassword2'])) {
             if ($_POST['password'] == $oldpassword['password'] && $_POST['newpassword1'] == $_POST['newpassword2']) {
-                //$this->loginManager->changePassword($_POST['newpassword1']);
+                $this->loginManager->changePassword($_POST['newpassword1']);
+                header('Location: index.php?action=admin');
             } else {
                     echo "erreur de mot de passe";
                 }

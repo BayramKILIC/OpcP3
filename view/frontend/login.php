@@ -1,10 +1,8 @@
 <?php 
-session_start();
 $title = "Se connecter"; ?>
 
 <?php ob_start(); ?>
 <h1>Mon super blogg !</h1>
-
 
 
 <form action="index.php?action=login" method="post">

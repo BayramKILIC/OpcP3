@@ -1,6 +1,7 @@
 <?php
 require_once("model/Manager.php");
 
+
 class LoginManager extends Manager
 {
     public function getLogin()
@@ -11,15 +12,24 @@ class LoginManager extends Manager
         return $req;
     }
 
-   public function changePassword($password)
+    /**
+     * @param $password
+     * @return mixed
+     * @throws Exception
+     */
+    public function changePassword($password)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('UPDATE user SET password=?');
-        $req->execute(array($password));
-        $req = $req->fetch();
+        $req = $db->prepare('UPDATE user SET password=? WHERE id=1');
+        $affectedLines =  $req->execute(array($password));
+        if($affectedLines){
+            return $password;
+        }else{
+            throw new Exception("Impossible de changer le mot de passe");
+        }
+    }
 
-        return $password;
-    } 
+
 
 
 }

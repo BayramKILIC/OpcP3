@@ -17,6 +17,10 @@
         <textarea id="mytextarea" name="content"></textarea>
     </div>
     <div>
+        <input type="radio" name="privacy" value="public" id="public" /> <label for="public">Public</label><br />
+        <input type="radio" name="privacy" value="private" id="private" checked/> <label for="private">Privé</label>
+    </div>
+    <div>
         <input type="submit" />
     </div>
 </form>
