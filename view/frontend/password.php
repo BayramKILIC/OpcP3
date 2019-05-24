@@ -2,7 +2,7 @@
 $title = "Se connecter"; ?>
 
 <?php ob_start(); ?>
-<h1>Mon super blogg !</h1>
+<h1>Changement de mot de passe</h1>
 
 
 
@@ -32,4 +32,4 @@ formulaire ici
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('templateAdmin.php'); ?>

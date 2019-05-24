@@ -3,7 +3,7 @@
 <?php ob_start(); ?>
 
 <div class="row">
-    <section class="col-sm-8 table-responsive">
+    <section class="col-sm-12 table-responsive">
         <table class="table table-bordered table-striped table-condensed">
             <caption>
                 <h4>Liste des commentaires</h4>
@@ -36,7 +36,9 @@ while ($data = $comments->fetch())
     <?php
 }
 $comments->closeCursor();
+// TODO Inserer colonne date et numero de chapitre
 ?>
+
 
             </tbody>
         </table>
@@ -46,4 +48,4 @@ $comments->closeCursor();
 
     <?php $content = ob_get_clean(); ?>
 
-    <?php require('template.php'); ?>
+    <?php require('templateAdmin.php'); ?>

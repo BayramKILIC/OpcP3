@@ -45,6 +45,12 @@
               </nav>
         </div>
     </div>
+            <?php if($message = $this->getFlashMessage()): ?>
+                <div class="alert alert-<?= $message[0]?>" role="alert">
+                    <?= $message[1] ?>
+                </div>
+            <?php endif; ?>
+
         <?= $content ?>
 
          <div class="row">

@@ -1,4 +1,5 @@
 <?php
+
 namespace P3\Controller;
 
 
@@ -58,21 +59,20 @@ class FrontendController extends Controller
 
     public function reportComment()
     {
-        $post = $this->postManager->getPost($_GET['id']);
-        $comment = $this->commentManager->getComments($_GET['id']);
-
         $affectedLines = $this->commentManager->reportComment($_GET['idcomment']);
 
         if ($affectedLines === false) {
             throw new \Exception('Impossible de signaler le commentaire !');
         } else {
-            require('view/frontend/postview.php');
+            $this->setFlashMessage('success', 'Le commentaire a été signalé');
+
+            header('Location: index.php?action=post&id=' . $_GET['id']);
         }
     }
 
     public function showComment()
     {
-
+        $this->checkAuthentication();
         $comments = $this->commentManager->getAllComments();
 
         require('view/frontend/allComment.php');
@@ -80,7 +80,7 @@ class FrontendController extends Controller
 
     public function deleteComment()
     {
-
+        $this->checkAuthentication();
         $comments = $this->commentManager->getAllComments();
         $affectedLines = $this->commentManager->deleteComment($_GET['id']);
 
@@ -93,28 +93,30 @@ class FrontendController extends Controller
 
     public function validateComment()
     {
-        $comments = $this->commentManager->getAllComments();
+        $this->checkAuthentication();
         $affectedLines = $this->commentManager->validateComment($_GET['id']);
+
 
         if ($affectedLines === false) {
             throw new \Exception('Impossible de valider le commentaire !');
         } else {
+            $comments = $this->commentManager->getAllComments();
             require('view/frontend/allComment.php');
         }
     }
 
     public function post()
-{
+    {
 
-    $post = $this->postManager->getPost($_GET['id']);
-    $comment = $this->commentManager->getComments($_GET['id']);
+        $post = $this->postManager->getPost($_GET['id']);
+        $comment = $this->commentManager->getComments($_GET['id']);
 
-    require('view/frontend/postView.php');
-}
+        require('view/frontend/postView.php');
+    }
 
     public function deletepost()
     {
-
+        $this->checkAuthentication();
         $affectedLines = $this->postManager->deletePost($_GET['id']);
 
         if ($affectedLines === false) {
@@ -126,23 +128,22 @@ class FrontendController extends Controller
 
     public function editpost()
     {
-
+        $this->checkAuthentication();
         $post = $this->postManager->getPost($_GET['id']);
 
         require('view/frontend/editpost.php');
     }
 
 
-
     public function addPost($title, $content)
     {
-
+        $this->checkAuthentication();
         $affectedLines = $this->postManager->postContent($title, $content);
 
         if ($affectedLines === false) {
             throw new \Exception('Impossible d\'ajouter le commentaire !');
         } else {
-            header('Location: index.php?action=newpost');
+            $this->redirect('newpost');
         }
     }
 
@@ -150,13 +151,13 @@ class FrontendController extends Controller
     public function addComment($postId, $author, $comment)
     {
 
-
+// TODO controler les entrées du formulaire avant d'inserer en base
         $affectedLines = $this->commentManager->postComment($postId, $author, $comment);
 
         if ($affectedLines === false) {
             throw new \Exception('Impossible d\'ajouter le commentaire !');
         } else {
-            header('Location: index.php?action=post&id=' . $postId);
+            $this->redirect('post',['id' => $postId]);
         }
     }
 
