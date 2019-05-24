@@ -1,4 +1,5 @@
 <?php
+namespace P3\Controller;
 
 
 abstract class Controller
@@ -10,7 +11,7 @@ abstract class Controller
     public function checkAuthentication()
     {
         if (!isset($_SESSION['user'])) {
-            throw new Exception('Connexion requise');
+            throw new \Exception('Connexion requise');
         }
 
         return true;

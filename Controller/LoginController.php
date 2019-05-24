@@ -1,9 +1,9 @@
 <?php
-
+namespace P3\Controller;
 
 // Chargement des classes
-require_once('model/LoginManager.php');
-require_once ('controller/Controller.php');
+use P3\Model\LoginManager;
+
 
 
 
@@ -22,7 +22,7 @@ class LoginController extends Controller
             $user = $this->loginManager->getLogin();
 
             if (!empty($_POST['login']) && !empty($_POST['password'])) {
-                if ($_POST['login'] == $user['login'] && $_POST['password'] == $user['password']) {
+                if ($_POST['login'] == $user['login'] && password_verify($_POST['password'], $user['password'])) {
                     $_SESSION['user'] = $user['login'];
                     header('Location: index.php?action=admin');
                 } else {
@@ -36,7 +36,7 @@ class LoginController extends Controller
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function admin()
     {
@@ -60,7 +60,8 @@ class LoginController extends Controller
         $oldpassword = $this->loginManager->getLogin();
 
          if (!empty($_POST['password']) && !empty($_POST['newpassword1']) && !empty($_POST['newpassword2'])) {
-            if ($_POST['password'] == $oldpassword['password'] && $_POST['newpassword1'] == $_POST['newpassword2']) {
+
+            if (password_verify($_POST['password'] , $oldpassword['password']) && $_POST['newpassword1'] == $_POST['newpassword2']) {
                 $this->loginManager->changePassword($_POST['newpassword1']);
                 header('Location: index.php?action=admin');
             } else {

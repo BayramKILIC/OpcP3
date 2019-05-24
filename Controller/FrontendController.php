@@ -1,11 +1,9 @@
 <?php
+namespace P3\Controller;
 
 
-// Chargement des classes
-require_once('model/PostManager.php');
-require_once('model/CommentManager.php');
-require_once ('controller/Controller.php');
-
+use P3\Model\CommentManager;
+use P3\Model\PostManager;
 
 class FrontendController extends Controller
 {
@@ -27,15 +25,15 @@ class FrontendController extends Controller
     public function listPostsPublic()
     {
 
-        $posts = $this->postManager->getPosts(1); // Appel d'une fonction de cet objet
+        $posts = $this->postManager->getPosts('public'); // Appel d'une fonction de cet objet
 
         require('view/frontend/listPostsView.php');
     }
 
     public function listPostsPrivate()
     {
-
-        $posts = $this->postManager->getPosts(2);
+        $this->checkAuthentication();
+        $posts = $this->postManager->getPosts('public');
 
         require('view/frontend/editContent.php');
     }
@@ -44,7 +42,7 @@ class FrontendController extends Controller
     {
         $this->checkAuthentication();
         if (!empty($_POST['title']) && !empty($_POST['content'])) {
-            $this->addPost($_POST['title'], $_POST['content'], $_POST['privacy']);
+            $this->addPost($_POST['title'], $_POST['content']);
         }
         require('view/frontend/newContent.php');
     }
@@ -53,9 +51,56 @@ class FrontendController extends Controller
     {
         $this->checkAuthentication();
         if (!empty($_POST['title']) && !empty($_POST['content'])) {
-            $this->editContent($_GET['id'], $_POST['title'], $_POST['content']);
+            $this->postManager->editContent($_GET['id'], $_POST['title'], $_POST['content']);
         }
         require('view/frontend/admin.php');
+    }
+
+    public function reportComment()
+    {
+        $post = $this->postManager->getPost($_GET['id']);
+        $comment = $this->commentManager->getComments($_GET['id']);
+
+        $affectedLines = $this->commentManager->reportComment($_GET['idcomment']);
+
+        if ($affectedLines === false) {
+            throw new \Exception('Impossible de signaler le commentaire !');
+        } else {
+            require('view/frontend/postview.php');
+        }
+    }
+
+    public function showComment()
+    {
+
+        $comments = $this->commentManager->getAllComments();
+
+        require('view/frontend/allComment.php');
+    }
+
+    public function deleteComment()
+    {
+
+        $comments = $this->commentManager->getAllComments();
+        $affectedLines = $this->commentManager->deleteComment($_GET['id']);
+
+        if ($affectedLines === false) {
+            throw new \Exception('Impossible de supprimer le commentaire !');
+        } else {
+            require('view/frontend/allComment.php');
+        }
+    }
+
+    public function validateComment()
+    {
+        $comments = $this->commentManager->getAllComments();
+        $affectedLines = $this->commentManager->validateComment($_GET['id']);
+
+        if ($affectedLines === false) {
+            throw new \Exception('Impossible de valider le commentaire !');
+        } else {
+            require('view/frontend/allComment.php');
+        }
     }
 
     public function post()
@@ -73,7 +118,7 @@ class FrontendController extends Controller
         $affectedLines = $this->postManager->deletePost($_GET['id']);
 
         if ($affectedLines === false) {
-            throw new Exception('Impossible d\'effacer le chapitre !');
+            throw new \Exception('Impossible d\'effacer le chapitre !');
         } else {
             header('Location: index.php?action=listPostsPrivate');
         }
@@ -84,18 +129,18 @@ class FrontendController extends Controller
 
         $post = $this->postManager->getPost($_GET['id']);
 
-        require('view/frontend/editPost.php');
+        require('view/frontend/editpost.php');
     }
 
 
 
-    public function addPost($title, $content, $privacy)
+    public function addPost($title, $content)
     {
 
-        $affectedLines = $this->postManager->postContent($title, $content, $privacy);
+        $affectedLines = $this->postManager->postContent($title, $content);
 
         if ($affectedLines === false) {
-            throw new Exception('Impossible d\'ajouter le commentaire !');
+            throw new \Exception('Impossible d\'ajouter le commentaire !');
         } else {
             header('Location: index.php?action=newpost');
         }
@@ -109,7 +154,7 @@ class FrontendController extends Controller
         $affectedLines = $this->commentManager->postComment($postId, $author, $comment);
 
         if ($affectedLines === false) {
-            throw new Exception('Impossible d\'ajouter le commentaire !');
+            throw new \Exception('Impossible d\'ajouter le commentaire !');
         } else {
             header('Location: index.php?action=post&id=' . $postId);
         }

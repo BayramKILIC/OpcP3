@@ -1,4 +1,4 @@
-<?php $title = htmlspecialchars($post['title']); ?>
+<?php $title = "Mon bLOG"; ?>
 
 <?php ob_start(); ?>
 <h1>Mon super blog !</h1>
@@ -48,6 +48,7 @@ while ($data = $comment->fetch())
         <?= nl2br(htmlspecialchars($data['comment'])) ?>
         <br />
     </p>
+    <em><a href="index.php?action=reportComment&amp;idcomment=<?= $data['id']?>&amp;id=<?=$post['id'] ?>">Signaler le commentaire</a></em>
                     
                 <?php
 }

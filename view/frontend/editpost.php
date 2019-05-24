@@ -8,7 +8,7 @@
     <form action="index.php?action=saveeditcontent&amp;id=<?= $post['id'] ?>" method="post">
         <div>
             <label for="title">Titre</label><br />
-            <input type="text" value=<?=$post['title']?> id="title" name="title" />
+            <input type="text" value="<?=$post['title']?>" id="title" name="title" />
         </div>
         <div>
             <textarea id="mytextarea" name="content"><?=$post['content']?></textarea>
