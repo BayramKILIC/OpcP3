@@ -90,6 +90,7 @@ class FrontendController extends Controller
             throw new \Exception('Impossible de supprimer le commentaire !');
         } else {
             $comments = $this->commentManager->getAllComments();
+            $this->setFlashMessage('success', 'Le commentaire a été supprimé');
             require('view/frontend/allComment.php');
         }
     }

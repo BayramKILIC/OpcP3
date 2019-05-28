@@ -28,8 +28,12 @@ while ($data = $comments->fetch())
                     <td><?= htmlspecialchars($data['comment']) ?></td>
                     <td> <?= htmlspecialchars($data['report_counter']) ?></td>
                     <td>
-                        <em><a href="index.php?action=validateComment&amp;id=<?= $data['id'] ?>">Valider</a></em> /
-                        <em><a href="index.php?action=deleteComment&amp;id=<?= $data['id'] ?>">Supprimer</a></em>
+                        <a href="index.php?action=validateComment&amp;id=<?= $data['id'] ?>">
+                               <button type="button" class="btn btn-success btn-sm">Valider</button>
+                        </a>
+                        <a href="index.php?action=deleteComment&amp;id=<?= $data['id'] ?>">
+                                <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
+                        </a>
                     </td>
                 </tr>
 
