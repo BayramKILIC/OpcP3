@@ -54,6 +54,13 @@
             <p><em><a href="index.php?action=showComment">Modérer les commentaires</a></em></p>
         </div>
         <div class="col-md-10">
+
+            <?php if($message = $this->getFlashMessage()): ?>
+                <div class="alert alert-<?= $message[0]?>" role="alert">
+                    <?= $message[1] ?>
+                </div>
+            <?php endif; ?>
+
     <?= $content ?>
         </div>
 

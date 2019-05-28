@@ -1,8 +1,7 @@
 <?php $title = 'Modifier un article'; ?>
 
 <?php ob_start(); ?>
-<h1>Mon super blog !</h1>
-<p><a href="index.php">Retour à la liste des billets</a></p>
+<p><a href="index.php?action=admin">Retour à la page d'administration</a></p>
 
 <?php
 while ($data = $posts->fetch())
@@ -16,6 +15,7 @@ while ($data = $posts->fetch())
         <?= htmlspecialchars($data['title']) ?>
         <em>le <?= $data['creation_date_fr'] ?></em>
     </h3>
+
 
     <p>
         <?= $preview_content ?> [...]

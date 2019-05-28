@@ -44,7 +44,9 @@ class FrontendController extends Controller
         $this->checkAuthentication();
         if (!empty($_POST['title']) && !empty($_POST['content'])) {
             $this->addPost($_POST['title'], $_POST['content']);
+            $this->setFlashMessage('success', 'Votre chapitre a bien été publié');
         }
+
         require('view/frontend/newContent.php');
     }
 
@@ -81,12 +83,13 @@ class FrontendController extends Controller
     public function deleteComment()
     {
         $this->checkAuthentication();
-        $comments = $this->commentManager->getAllComments();
+
         $affectedLines = $this->commentManager->deleteComment($_GET['id']);
 
         if ($affectedLines === false) {
             throw new \Exception('Impossible de supprimer le commentaire !');
         } else {
+            $comments = $this->commentManager->getAllComments();
             require('view/frontend/allComment.php');
         }
     }
@@ -101,6 +104,7 @@ class FrontendController extends Controller
             throw new \Exception('Impossible de valider le commentaire !');
         } else {
             $comments = $this->commentManager->getAllComments();
+            $this->setFlashMessage('success', 'Le commentaire a été validé');
             require('view/frontend/allComment.php');
         }
     }
@@ -122,6 +126,7 @@ class FrontendController extends Controller
         if ($affectedLines === false) {
             throw new \Exception('Impossible d\'effacer le chapitre !');
         } else {
+            $this->setFlashMessage('success', 'Le chapitre a été supprimé');
             header('Location: index.php?action=listPostsPrivate');
         }
     }
@@ -150,30 +155,23 @@ class FrontendController extends Controller
 
     public function addComment($postId, $author, $comment)
     {
-
-// TODO controler les entrées du formulaire avant d'inserer en base
-        $affectedLines = $this->commentManager->postComment($postId, $author, $comment);
-
-        if ($affectedLines === false) {
-            throw new \Exception('Impossible d\'ajouter le commentaire !');
+        if(!empty($author) and !empty($comment)) {
+            if (strlen($author) > 2 and strlen($comment) > 2) {
+                $affectedLines = $this->commentManager->postComment($postId, $author, $comment);
+                if ($affectedLines === false) {
+                    throw new \Exception('Impossible d\'ajouter le commentaire !');
+                } else {
+                    $this->setFlashMessage('success', 'Votre commentaire a bien été enregistré');
+                }
+            } else {
+                $this->setFlashMessage('danger', 'Nombre de caractère insuffisant');
+            }
         } else {
-            $this->redirect('post',['id' => $postId]);
+            $this->setFlashMessage('danger', 'Veuillez remplir tout les champs');
         }
+        $this->redirect('post', ['id' => $postId]);
     }
 
-    /* function editComment($commentId, $author, $comment)
-     {
-         $commentManager = new CommentManager();
-
-        $affectedLines = $commentManager->editComment($commentId, $author, $comment);
-
-        if ($affectedLines === false) {
-            throw new Exception('Impossible de modifier le commentaire !');
-        }
-        else {
-            header('Location: index.php');
-        }
-    }  */
 
 
 }

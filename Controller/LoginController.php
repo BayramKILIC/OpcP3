@@ -67,12 +67,14 @@ class LoginController extends Controller
 
             if (password_verify($_POST['password'], $oldpassword['password']) && $_POST['newpassword1'] == $_POST['newpassword2']) {
                 $this->loginManager->changePassword($_POST['newpassword1']);
+                $this->setFlashMessage('success', 'Le mot de passe a été modifié');
                 header('Location: index.php?action=admin');
+
             } else {
-                echo "erreur de mot de passe";
+                $this->setFlashMessage('danger', 'Erreur mot de passe');
             }
         } else {
-            echo "remplir tous les champs";
+            $this->setFlashMessage('info', 'Veuillez remplir tout les champs');
         }
         require('view/frontend/password.php');
     }
