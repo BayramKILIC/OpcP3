@@ -22,6 +22,13 @@ class FrontendController extends Controller
         $this->commentManager = new CommentManager();
     }
 
+    public function index()
+    {
+
+        $posts = $this->postManager->getPosts('public'); // Appel d'une fonction de cet objet
+
+        require('view/frontend/welcome.php');
+    }
 
     public function listPostsPublic()
     {

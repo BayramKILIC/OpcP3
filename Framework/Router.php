@@ -93,7 +93,7 @@ class Router
                 }
             }
             else {
-                $this->frontendController->listPostsPublic();
+                $this->frontendController->index();
             }
         }
         catch(\Exception $e) {
