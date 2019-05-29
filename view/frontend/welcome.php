@@ -5,7 +5,10 @@
     <div class="form-signin">
         <div class="text-center mb-4">
             <h1 class="h3 mb-3 font-weight-normal">Bienvenu sur mon site</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non ornare enim. Vivamus tortor mi, pharetra at diam id, dapibus pulvinar ipsum. Aenean id vehicula ipsum. Cras finibus lacinia laoreet. In hac habitasse platea dictumst. Phasellus rhoncus neque lectus, nec imperdiet lacus dictum a. Donec tellus nisl, rutrum sit amet leo at, placerat eleifend enim. Vivamus vestibu [...]  <a href="https://caniuse.com/#feat=css-placeholder-shown">Works in latest Chrome, Safari, and Firefox.</a></p>
+            <p>Je suis Jean Forteroche. <br/> Ecrivain de longue date, j'ai décidé de publié mon roman
+                "Billet simple pour l'Alaska" en ligne. Ce blog sera régulièrement mis à jour
+                est de nouveau chapitre verront le jour avec le temps.  N'hésitez pas à consulter la rubrique à propos pour avoir plus d'information et
+            me contacter si vous le souhaitez. Je vous souhaite à tous une bonne lécture.</p>
         </div>
 
 
@@ -13,7 +16,7 @@
 
 
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Commencez la lecture</button>
+        <a class="btn btn-lg btn-primary btn-block" href="index.php?action=listPostsPublic">Commencez la lecture</a>
 
     </div>
 

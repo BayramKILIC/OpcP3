@@ -58,6 +58,9 @@ class Router
                         throw new \Exception('Aucun identifiant de billet envoyé');
                     }
                 }
+                elseif ($_GET['action'] == 'listPostsPublic') {
+                    $this->frontendController->listPostsPublic();
+                }
                 elseif ($_GET['action'] == 'newpost') {
                     $this->frontendController->newContent();
                 }

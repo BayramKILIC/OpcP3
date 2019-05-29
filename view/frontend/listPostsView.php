@@ -2,11 +2,8 @@
 
 <?php ob_start(); ?>
 
-     <div class="row">
-        <div class="col-md-6" style="background-color: yellow">
-            <p>ici un espace 'à propos'</p>
-        </div>
-        <div class="col-md-6">
+
+        <div>
                 <!-- ici liste des chapitres -->
                 <p>Derniers billets du blogg :</p>
 
@@ -16,7 +13,7 @@
                 while ($data = $posts->fetch())
                 {
                 ?>
-                    
+
                         <h3>
                             <?= htmlspecialchars($data['title']) ?>
                             <em>le <?= $data['creation_date_fr'] ?></em>
@@ -29,6 +26,7 @@
                         </p>
                     
                 <?php
+                    // todo regler grille menu et contenu
                 }
                 $posts->closeCursor();
                 ?>
