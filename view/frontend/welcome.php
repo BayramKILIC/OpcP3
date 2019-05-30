@@ -16,7 +16,7 @@
 
 
 
-        <a class="btn btn-lg btn-primary btn-block" href="index.php?action=listPostsPublic">Commencez la lecture</a>
+        <a class="btn btn-lg btn-outline-secondary btn-block" href="index.php?action=listPostsPublic">Commencez la lecture</a>
 
     </div>
 
