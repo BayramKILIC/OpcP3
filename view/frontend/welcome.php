@@ -2,13 +2,13 @@
 
 <?php ob_start(); ?>
 
-    <div class="form-signin">
+    <div class="form-signin center">
         <div class="text-center mb-4">
             <h1 class="h3 mb-3 font-weight-normal">Bienvenu sur mon site</h1>
             <p>Je suis Jean Forteroche. <br/> Ecrivain de longue date, j'ai décidé de publié mon roman
                 "Billet simple pour l'Alaska" en ligne. Ce blog sera régulièrement mis à jour
                 est de nouveau chapitre verront le jour avec le temps.  N'hésitez pas à consulter la rubrique à propos pour avoir plus d'information et
-            me contacter si vous le souhaitez. Je vous souhaite à tous une bonne lécture.</p>
+            me contacter si vous le souhaitez. Je vous souhaite à tous une bonne lecture.</p>
         </div>
 
 

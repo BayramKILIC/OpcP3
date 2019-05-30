@@ -4,11 +4,6 @@
 
 
 
-                <!-- ici liste des chapitres -->
-                <p>Derniers billets du blogg :</p>
-
-
-
                 <?php
                 while ($data = $posts->fetch())
                 {
@@ -17,12 +12,12 @@
 
                         <h3>
                             <?= htmlspecialchars($data['title']) ?>
-                            <em>le <?= $data['creation_date_fr'] ?></em>
+                            <em>publié le <?= $data['creation_date_fr'] ?></em>
                         </h3>
                         
                         <p>
                             <?= $data['content'] ?>
-                            <br />
+
                             <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Lire le chapitre</a></em>
                         </p>
 

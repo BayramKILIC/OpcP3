@@ -2,29 +2,31 @@
 $title = "Se connecter"; ?>
 
 <?php ob_start(); ?>
-<h1>Changement de mot de passe</h1>
 
 
+<form class="form-signin text-center" action="index.php?action=changepassword" method="post">
+    <img class="mb-4"src="https://image.flaticon.com/icons/svg/1197/1197500.svg" alt="" width="72" height="72">
+    <h3 class="text-center">Changer le mot de passe</h3>
+    <div>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control mb-2" placeholder="Votre ancien mot de passe" required name="password">
 
-<form action="index.php?action=changepassword" method="post">
-    <div>
-        <label for="password">Votre ancien mot de passe</label><br />
-        <input type="password" id="password" name="password" />
     </div>
     <div>
-        <label for="newpassword1">Votre nouveau mot de passe</label><br />
-        <input type="password" id="newpassword1" name="newpassword1" />
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control mb-2" placeholder="Votre nouveau mot de passe" required name="newpassword1">
+
     </div>
     <div>
-        <label for="newpassword2">Confirmer votre nouveau mot de passe</label><br />
-        <input type="password" id="newpassword2" name="newpassword2" />
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control mb-2" placeholder="Confirmation du nouveau mot de passe" required name="newpassword2">
+
     </div>
     <div>
-        <input type="submit" />
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
     </div>
 </form>
 
-formulaire ici
 
 
 

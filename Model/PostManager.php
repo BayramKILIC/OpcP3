@@ -7,7 +7,7 @@ class PostManager extends Manager
     public function getPosts($status)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM chapter WHERE status=? ORDER BY creation_date');
+        $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creation_date_fr FROM chapter WHERE status=? ORDER BY creation_date');
         $req->execute(array($status));
         return $req;
     }

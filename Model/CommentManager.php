@@ -8,7 +8,7 @@ class CommentManager extends Manager
     public function getComments($postId)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, name, comment, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comment WHERE id_chapter=? ORDER BY id DESC');
+        $req = $db->prepare('SELECT id, name, comment, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS comment_date_fr FROM comment WHERE id_chapter=? ORDER BY id DESC');
         $req->execute(array($postId));
         return $req;
     }
@@ -16,7 +16,7 @@ class CommentManager extends Manager
     public function getAllComments()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, name, comment, report_counter, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comment ORDER BY report_counter DESC, creation_date DESC');
+        $req = $db->query('SELECT id, name, comment, report_counter, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS comment_date_fr FROM comment ORDER BY report_counter DESC, creation_date DESC');
         return $req;
     }
 

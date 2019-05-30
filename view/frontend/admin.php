@@ -5,7 +5,7 @@
 
 
 
-
+<p>test</p>
 
 
             <?php $content = ob_get_clean(); ?>

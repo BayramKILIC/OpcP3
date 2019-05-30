@@ -4,7 +4,7 @@ $title = "Se connecter"; ?>
 <?php ob_start(); ?>
 
 
-
+<div class="center-form">
 <form class="form-signin text-center" action="index.php?action=login" method="post">
     <img class="mb-4"src="https://image.flaticon.com/icons/svg/1651/1651104.svg" alt="" width="72" height="72">
     <h3 class="text-center">Espace personnel</h3>
@@ -14,14 +14,14 @@ $title = "Se connecter"; ?>
     </div>
     <div>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required name="password">
+        <input type="password" id="inputPassword" class="form-control mb-2"  placeholder="Mot de passe" required name="password">
 
     </div>
     <div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
     </div>
 </form>
-
+</div>
 
 
 
