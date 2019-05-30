@@ -17,7 +17,7 @@
         });
     </script>
 </head>
-
+<div class="container">
 <div class="row">
 <div class="col-lg-12">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -45,6 +45,18 @@
 </div>
 </div>
 
+    <div class="row">
+    <div class="col-lg-6 offset-lg-3 text-center">
+        <?php if($message = $this->getFlashMessage()): ?>
+            <div class="alert alert-<?= $message[0]?>" role="alert">
+                <?= $message[1] ?>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+
+
 <main role="main" class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -52,6 +64,7 @@
         </div>
     </div>
 </main>
+</div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="bootstrap-4.0.0/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
 <script src="bootstrap-4.0.0/assets/js/vendor/popper.min.js"></script>

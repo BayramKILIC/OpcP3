@@ -5,7 +5,8 @@ $title = "Se connecter"; ?>
 
 
 
-<form class="form-signin" action="index.php?action=login" method="post">
+<form class="form-signin text-center" action="index.php?action=login" method="post">
+    <img class="mb-4"src="https://image.flaticon.com/icons/svg/1651/1651104.svg" alt="" width="72" height="72">
     <h3 class="text-center">Espace personnel</h3>
     <div>
         <label class="sr-only" for="inlineFormInput">Identifiant</label>
