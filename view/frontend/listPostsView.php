@@ -3,7 +3,7 @@
 <?php ob_start(); ?>
 
 
-        <div>
+
                 <!-- ici liste des chapitres -->
                 <p>Derniers billets du blogg :</p>
 
@@ -13,6 +13,7 @@
                 while ($data = $posts->fetch())
                 {
                 ?>
+
 
                         <h3>
                             <?= htmlspecialchars($data['title']) ?>
@@ -24,14 +25,14 @@
                             <br />
                             <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Lire le chapitre</a></em>
                         </p>
+
                     
                 <?php
                     // todo regler grille menu et contenu
                 }
                 $posts->closeCursor();
                 ?>
-            </div>
-        </div>
+
        
 <?php $content = ob_get_clean(); ?>
 

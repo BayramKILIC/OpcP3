@@ -2,24 +2,25 @@
 $title = "Se connecter"; ?>
 
 <?php ob_start(); ?>
-<h1>Mon super blogg !</h1>
 
 
-<form action="index.php?action=login" method="post">
+
+<form class="form-signin" action="index.php?action=login" method="post">
+    <h3 class="text-center">Espace personnel</h3>
     <div>
-        <label for="login">Login</label><br />
-        <input type="text" id="login" name="login" />
+        <label class="sr-only" for="inlineFormInput">Identifiant</label>
+        <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Identifiant" name="login" required>
     </div>
     <div>
-        <label for="password">Commentaire</label><br />
-        <input type="password" id="login" name="password" />
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required name="password">
+
     </div>
     <div>
-        <input type="submit" />
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
     </div>
 </form>
 
-formulaire ici
 
 
 
