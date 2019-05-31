@@ -1,9 +1,8 @@
 <?php $title = "Mon bLOG"; ?>
 
 <?php ob_start(); ?>
-<p><a href="index.php">Retour à la liste des billets</a></p>
 
-<div class="news">
+
     <h3>
         <?= $post['title'] ?>
         <em>le <?= $post['creation_date_fr'] ?></em>
@@ -12,22 +11,20 @@
     <p>
         <?= $post['content'] ?>
     </p>
-</div>
-
-<h2>Commentaires</h2>
 
 
-<form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
+
+<form class="form-signin text-center" action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
+    <h3 class="text-center">Laisser un commentaire</h3>
     <div>
-        <label for="author">Auteur</label><br />
-        <input type="text" id="author" name="author" />
+        <label class="sr-only" for="inlineFormInput">Votre nom</label>
+        <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Votre pseudo" name="author" required>
     </div>
     <div>
-        <label for="comment">Commentaire</label><br />
-        <textarea id="comment" name="comment"></textarea>
+        <textarea class="form-control mb-2" id="exampleFormControlTextarea1" rows="3" placeholder="Votre commentaire" name="comment"></textarea>
     </div>
     <div>
-        <input type="submit" />
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
     </div>
 </form>
 
@@ -45,13 +42,13 @@ while ($data = $comment->fetch())
     
     <p>
         <?= nl2br(htmlspecialchars($data['comment'])) ?>
-        <br />
-    </p>
+
     <em><a href="index.php?action=reportComment&amp;idcomment=<?= $data['id']?>&amp;id=<?=$post['id'] ?>">Signaler le commentaire</a></em>
-                    
+    </p>
                 <?php
 }
 ?>
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>

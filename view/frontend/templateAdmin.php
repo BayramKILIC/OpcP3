@@ -55,12 +55,12 @@
     </div>
 
     <div class="row">
-        <div class="col-md-2 mt-5" style="background-color: yellow">
-            <p></p><em><a href="index.php">Retour à la page d'accueuil</a></em></p>
-            <p><em><a href="index.php?action=newpost">Ecrire un nouveau chapitre</a></em></p>
-            <p><em><a href="index.php?action=changepassword">Changer mot de passe</a></em></p>
-            <p><em><a href="index.php?action=listPostsPrivate">Modifier un article</a></em></p>
-            <p><em><a href="index.php?action=showComment">Modérer les commentaires</a></em></p>
+        <div class="col-md-2 mt-5">
+            <a href="index.php" class="btn btn-secondary btn-sm active mb-2" role="button" aria-pressed="true">Retour à la page d'accueuil</a>
+            <a href="index.php?action=newpost" class="btn btn-secondary btn-sm active mb-2" role="button" aria-pressed="true">Ecrire un nouveau chapitre</a>
+            <a href="index.php?action=changepassword" class="btn btn-secondary btn-sm active mb-2" role="button" aria-pressed="true">Changer mot de passe</a>
+            <a href="index.php?action=listPostsPrivate" class="btn btn-secondary btn-sm active mb-2" role="button" aria-pressed="true">Modifier un article</a>
+            <a href="index.php?action=showComment" class="btn btn-secondary btn-sm active mb-2" role="button" aria-pressed="true">Modérer les commentaires</a>
         </div>
         <div class="col-md-10 mt-5 mb-5">
 
@@ -76,8 +76,8 @@
     <div class="row">
         <div class="col-md-12">
             <nav class="navbar navbar-expand-md navbar-dark fixed-bottom bg-dark">
-                <p><em><a href="index.php?action=login">Se connecter</a></em> </p>
-                <p><em><a href="index.php?action=signout">Se déconnecter</a></em> </p>
+                <p><a href="index.php?action=login">Se connecter</a> </p>
+                <p><a href="index.php?action=signout">Se déconnecter</a></p>
             </nav>
         </div>
     </div>

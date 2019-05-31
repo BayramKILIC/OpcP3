@@ -63,17 +63,27 @@
 
 <main role="main" class="container">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12 mt-5 mb-5">
         <?= $content ?>
         </div>
     </div>
 </main>
-
-    <div class="col-md-12">
-        <nav class="navbar navbar-expand-md navbar-dark fixed-bottom bg-dark">
-            <p><em><a href="index.php?action=login">Se connecter</a></em> </p>
-            <p><em><a href="index.php?action=signout">Se déconnecter</a></em> </p>
-        </nav>
+<div class="row">
+    <div class="col-md-12 mt-5">
+            <footer class="footer mt-auto py-3 fixed-bottom bg-dark">
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="text-muted text-center">Site conçu avec bootstrap.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="text-muted text-center"> Devellopement et Design : Bayram KILIC</p>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="index.php?action=login">Se connecter</a>
+                        <a href="index.php?action=signout">Se déconnecter</a>
+                    </div>
+                </div>
+        </footer>
     </div>
 </div>
 </div>

@@ -12,6 +12,7 @@
             <tr>
                 <th>Nom</th>
                 <th>Commentaire</th>
+                <th>Date</th>
                 <th>Nombre de signalement</th>
                 <th>Supprimer / Valider</th>
             </tr>
@@ -26,6 +27,7 @@ while ($data = $comments->fetch())
                 <tr>
                     <td><?= htmlspecialchars($data['name']) ?></td>
                     <td><?= htmlspecialchars($data['comment']) ?></td>
+                    <td><?= htmlspecialchars($data['comment_date_fr']) ?></td>
                     <td> <?= htmlspecialchars($data['report_counter']) ?></td>
                     <td>
                             <a class="btn btn-secondary btn-success" href="index.php?action=validateComment&amp;id=<?= $data['id'] ?>" role="button"> Valider</a>

@@ -69,7 +69,6 @@ class LoginController extends Controller
                 $this->loginManager->changePassword($_POST['newpassword1']);
                 $this->setFlashMessage('success', 'Le mot de passe a été modifié');
                 header('Location: index.php?action=admin');
-
             } else {
                 $this->setFlashMessage('danger', 'Erreur mot de passe');
             }
