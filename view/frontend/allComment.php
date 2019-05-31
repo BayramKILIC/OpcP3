@@ -12,6 +12,7 @@
             <tr>
                 <th>Nom</th>
                 <th>Commentaire</th>
+                <th>Titre de l'article commenté</th>
                 <th>Date</th>
                 <th>Nombre de signalement</th>
                 <th>Supprimer / Valider</th>
@@ -27,6 +28,7 @@ while ($data = $comments->fetch())
                 <tr>
                     <td><?= htmlspecialchars($data['name']) ?></td>
                     <td><?= htmlspecialchars($data['comment']) ?></td>
+                    <td><?= htmlspecialchars($data['title']) ?></td>
                     <td><?= htmlspecialchars($data['comment_date_fr']) ?></td>
                     <td> <?= htmlspecialchars($data['report_counter']) ?></td>
                     <td>
