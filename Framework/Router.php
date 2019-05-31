@@ -94,6 +94,9 @@ class Router
                 elseif ($_GET['action'] == 'reportComment') {
                     $this->frontendController->reportComment();
                 }
+                elseif ($_GET['action'] == 'aboutme') {
+                    $this->frontendController->about();
+                }
             }
             else {
                 $this->frontendController->index();

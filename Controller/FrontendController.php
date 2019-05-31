@@ -30,6 +30,10 @@ class FrontendController extends Controller
         require('view/frontend/welcome.php');
     }
 
+    public function about()
+    {
+        require('view/frontend/aboutme.php');
+    }
 
     public function listPostsPublic()
     {

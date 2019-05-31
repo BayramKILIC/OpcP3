@@ -8,7 +8,7 @@
         <h1 class="h3 mb-3 font-weight-normal">Espace administrateur</h1>
         <img class="mb-4"src="https://image.flaticon.com/icons/svg/1802/1802882.svg" alt="" width="72" height="72">
         <p>L'espace admnistrateur vous permet d'accéder à des fonctionalitées privées via le menu présent
-        a gauche de votre page.</p>
+        a gauche de cette page.</p>
     </div>
 
 </div>
