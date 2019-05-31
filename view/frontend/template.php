@@ -78,9 +78,9 @@
                     <div class="col-md-4">
                         <p class="text-muted text-center"> Devellopement et Design : Bayram KILIC</p>
                     </div>
-                    <div class="col-md-4">
-                        <a href="index.php?action=login">Se connecter</a>
-                        <a href="index.php?action=signout">Se déconnecter</a>
+                    <div class="col-md-4 text-center">
+                        <a href="index.php?action=login" style="text-decoration:none; color:#000;">Se connecter</a>
+                        <a href="index.php?action=signout" style="text-decoration:none; color:#000;">Se déconnecter</a>
                     </div>
                 </div>
         </footer>

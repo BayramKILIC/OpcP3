@@ -80,7 +80,7 @@ class FrontendController extends Controller
         } else {
             $this->setFlashMessage('success', 'Le commentaire a été signalé');
 
-            header('Location: index.php?action=post&id=' . $_GET['id']);
+            $this->redirect('post', ['id' => $_GET['id']]);
         }
     }
 
@@ -140,7 +140,7 @@ class FrontendController extends Controller
             throw new \Exception('Impossible d\'effacer le chapitre !');
         } else {
             $this->setFlashMessage('success', 'Le chapitre a été supprimé');
-            header('Location: index.php?action=listPostsPrivate');
+            $this->redirect('listPostsPrivate');
         }
     }
 
@@ -184,7 +184,4 @@ class FrontendController extends Controller
         }
         $this->redirect('post', ['id' => $postId]);
     }
-
-
-
 }
