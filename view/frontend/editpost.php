@@ -5,7 +5,7 @@
 <p><a href="index.php">Retour à la liste des billets</a></p>
 
 <div class="news">
-    <form action="index.php?action=saveeditcontent&amp;id=<?= $post['id'] ?>" method="post">
+    <form action="" method="post">
         <div>
             <label for="title">Titre</label><br />
             <input type="text" value="<?=$post['title']?>" id="title" name="title" />
@@ -16,6 +16,7 @@
         <div>
             <input type="submit" />
         </div>
+    </form>
 </div>
 
 

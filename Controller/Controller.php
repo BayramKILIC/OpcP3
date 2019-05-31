@@ -38,13 +38,12 @@ abstract class Controller
 
     public function redirect(string $action, array $params = [])
     {
-
-
         $url = "Location: index.php?action=" . $action;
 
         foreach ($params as $key => $value) {
             $url .= "&$key=$value";
         }
         header($url);
+        return true;
     }
 }

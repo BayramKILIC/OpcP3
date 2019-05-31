@@ -48,8 +48,6 @@ class LoginController extends Controller
 
         // TODO Creer le dashboard
 
-        $posts = $this->loginManager->getLogin();
-
         require('view/frontend/admin.php');
     }
 

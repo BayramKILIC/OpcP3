@@ -36,10 +36,10 @@
                             <a class="nav-link" href="index.php">Accueil <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Liste des chapitres</a>
+                            <a class="nav-link" href="index.php?action=listPostsPublic">Liste des chapitres</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">A propos</a>
+                            <a class="nav-link" href="index.php?action=aboutme">A propos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?action=login">Connexion</a>

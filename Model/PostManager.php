@@ -22,13 +22,23 @@ class PostManager extends Manager
         return $post;
     }
 
+    /**
+     * @param $title
+     * @param $content
+     * @return bool
+     * @throws \Exception
+     */
     public function postContent($title, $content)
     {
         $db = $this->dbConnect();
         $contents = $db->prepare('INSERT INTO chapter(title, content, creation_date) VALUES (?, ?, NOW())');
-        $affectedLines = $contents->execute(array($title, $content));
+        try{
+             $ret = $contents->execute(array($title, $content));
+        }catch(\Exception $exception) {
+            throw new \Exception("Impossible d'ajouter ce chapitre ".$exception->getMessage());
+        }
 
-        return $affectedLines;
+        return $ret;
     }
 
     public function deletePost($postId)

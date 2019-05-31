@@ -54,22 +54,17 @@ class FrontendController extends Controller
     public function newContent()
     {
         $this->checkAuthentication();
-        if (!empty($_POST['title']) && !empty($_POST['content'])) {
-            $this->addPost($_POST['title'], $_POST['content']);
+        if (empty($_POST['title']) || empty($_POST['content'])) {
+            $this->setFlashMessage('info', 'Veuillez remplir tout les champs');
+        } else {
+            $this->postManager->postContent($_POST['title'], $_POST['content']);
             $this->setFlashMessage('success', 'Votre chapitre a bien été publié');
+            return $this->redirect('listPostsPrivate');
         }
-
         require('view/frontend/newContent.php');
     }
 
-    public function saveEditContent()
-    {
-        $this->checkAuthentication();
-        if (!empty($_POST['title']) && !empty($_POST['content'])) {
-            $this->postManager->editContent($_GET['id'], $_POST['title'], $_POST['content']);
-        }
-        require('view/frontend/admin.php');
-    }
+
 
     public function reportComment()
     {
@@ -80,7 +75,7 @@ class FrontendController extends Controller
         } else {
             $this->setFlashMessage('success', 'Le commentaire a été signalé');
 
-            $this->redirect('post', ['id' => $_GET['id']]);
+            return $this->redirect('post', ['id' => $_GET['id']]);
         }
     }
 
@@ -131,7 +126,7 @@ class FrontendController extends Controller
         require('view/frontend/postView.php');
     }
 
-    public function deletepost()
+    public function deletePost()
     {
         $this->checkAuthentication();
         $affectedLines = $this->postManager->deletePost($_GET['id']);
@@ -140,7 +135,7 @@ class FrontendController extends Controller
             throw new \Exception('Impossible d\'effacer le chapitre !');
         } else {
             $this->setFlashMessage('success', 'Le chapitre a été supprimé');
-            $this->redirect('listPostsPrivate');
+            return $this->redirect('listPostsPrivate');
         }
     }
 
@@ -148,6 +143,11 @@ class FrontendController extends Controller
     {
         $this->checkAuthentication();
         $post = $this->postManager->getPost($_GET['id']);
+
+        if (!empty($_POST['title']) && !empty($_POST['content'])) {
+            $this->postManager->editContent($_GET['id'], $_POST['title'], $_POST['content']);
+            return $this->redirect('listPostsPrivate');
+        }
 
         require('view/frontend/editpost.php');
     }
@@ -161,14 +161,14 @@ class FrontendController extends Controller
         if ($affectedLines === false) {
             throw new \Exception('Impossible d\'ajouter le commentaire !');
         } else {
-            $this->redirect('newpost');
+            return $this->redirect('newpost');
         }
     }
 
 
     public function addComment($postId, $author, $comment)
     {
-        if(!empty($author) and !empty($comment)) {
+        if (!empty($author) and !empty($comment)) {
             if (strlen($author) > 2 and strlen($comment) > 2) {
                 $affectedLines = $this->commentManager->postComment($postId, $author, $comment);
                 if ($affectedLines === false) {
@@ -182,6 +182,6 @@ class FrontendController extends Controller
         } else {
             $this->setFlashMessage('danger', 'Veuillez remplir tout les champs');
         }
-        $this->redirect('post', ['id' => $postId]);
+        return $this->redirect('post', ['id' => $postId]);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace P3\Framework;
 
 use P3\Controller\FrontendController;
@@ -19,7 +20,7 @@ class Router
     public function __construct()
     {
         $this->frontendController = new FrontendController();
-        
+
         $this->loginController = new LoginController();
     }
 
@@ -27,82 +28,78 @@ class Router
     {
 
         try {
-            if (isset($_GET['action'])) {
-                if ($_GET['action'] == 'listPosts') {
+            $action = $_GET['action'] ?? 'default';
+            switch ($action) {
+                case 'listPosts':
                     $this->frontendController->listPostsPublic();
-                }
-                elseif ($_GET['action'] == 'post') {
+                    break;
+                case 'post':
                     if (isset($_GET['id']) && $_GET['id'] > 0) {
                         $this->frontendController->post();
-                    }
-                    else {
+                    } else {
                         throw new \Exception('Aucun identifiant de billet envoyé');
                     }
-                }
-                elseif ($_GET['action'] == 'editpost') {
+                    break;
+                case 'editpost':
                     if (isset($_GET['id']) && $_GET['id'] > 0) {
                         $this->frontendController->editpost();
-                    }
-                    else {
+                    } else {
                         throw new \Exception('Aucun identifiant de billet envoyé');
                     }
-                }
-                elseif ($_GET['action'] == 'listPostsPrivate') {
+                    break;
+
+                case 'listPostsPrivate':
                     $this->frontendController->listPostsPrivate();
-                }
-                elseif ($_GET['action'] == 'addComment') {
+                    break;
+
+                case 'addComment':
                     if (isset($_GET['id']) && $_GET['id'] > 0) {
                         $this->frontendController->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
-                    }
-                    else {
+                    } else {
                         throw new \Exception('Aucun identifiant de billet envoyé');
                     }
-                }
-                elseif ($_GET['action'] == 'listPostsPublic') {
+                    break;
+
+                case 'listPostsPublic':
                     $this->frontendController->listPostsPublic();
-                }
-                elseif ($_GET['action'] == 'newpost') {
+                    break;
+                case 'newpost':
                     $this->frontendController->newContent();
-                }
-                elseif ($_GET['action'] == 'saveeditcontent') {
-                    $this->frontendController->saveEditContent();
-                }
-                elseif ($_GET['action'] == 'deletepost') {
+                    break;
+                case  'deletepost':
                     $this->frontendController->deletePost();
-                }
-                elseif ($_GET['action'] == 'login') {
+                    break;
+                case 'login':
                     $this->loginController->checkLogin();
-                }
-                elseif ($_GET['action'] == 'admin') {
+                    break;
+                case 'admin':
                     $this->loginController->admin();
-                }
-                elseif ($_GET['action'] == 'changepassword') {
+                    break;
+                case  'changepassword':
                     $this->loginController->changePassword();
-                }
-                elseif ($_GET['action'] == 'signout') {
+                    break;
+                case 'signout':
                     $this->loginController->signout();
-                }
-                elseif ($_GET['action'] == 'showComment') {
+                    break;
+                case 'showComment':
                     $this->frontendController->showComment();
-                }
-                elseif ($_GET['action'] == 'deleteComment') {
+                    break;
+                case 'deleteComment':
                     $this->frontendController->deleteComment();
-                }
-                elseif ($_GET['action'] == 'validateComment') {
+                    break;
+                case  'validateComment':
                     $this->frontendController->validateComment();
-                }
-                elseif ($_GET['action'] == 'reportComment') {
+                    break;
+                case  'reportComment':
                     $this->frontendController->reportComment();
-                }
-                elseif ($_GET['action'] == 'aboutme') {
+                    break;
+                case'aboutme' :
                     $this->frontendController->about();
-                }
+                    break;
+                default:
+                    $this->frontendController->index();
             }
-            else {
-                $this->frontendController->index();
-            }
-        }
-        catch(\Exception $e) {
+        } catch (\Exception $e) {
             echo 'Erreur : ' . $e->getMessage();
         }
     }

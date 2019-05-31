@@ -6,11 +6,11 @@
 
 
 
-<form action="index.php?action=newpost" method="post">
+<form action="" method="post">
 
     <div>
-        <label for="title">Titre</label><br />
-        <input type="text" id="title" name="title" />
+        <label class="sr-only" for="inlineFormInput">Titre du chapitre</label>
+        <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Titre du chapitre" name="title" required>
     </div>
     <div>
         <label for="content">Votre texte</label><br />
