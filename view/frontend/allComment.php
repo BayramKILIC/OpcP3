@@ -32,8 +32,10 @@ while ($data = $comments->fetch())
                     <td><?= htmlspecialchars($data['comment_date_fr']) ?></td>
                     <td> <?= htmlspecialchars($data['report_counter']) ?></td>
                     <td>
-                            <a class="btn btn-secondary btn-success" href="index.php?action=validateComment&amp;id=<?= $data['id'] ?>" role="button"> Valider</a>
-                            <a class="btn btn-secondary btn-danger" href="index.php?action=deleteComment&amp;id=<?= $data['id'] ?>" role="button">Supprimer</a>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <a class="btn btn-secondary btn-success btn-sm ml-3" href="index.php?action=validateComment&amp;id=<?= $data['id'] ?>" role="button"> Valider</a>
+                            <a class="btn btn-secondary btn-danger btn-sm" href="index.php?action=deleteComment&amp;id=<?= $data['id'] ?>" role="button">Supprimer</a>
+                        </div>
                     </td>
                 </tr>
 
