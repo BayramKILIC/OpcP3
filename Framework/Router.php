@@ -31,7 +31,7 @@ class Router
             $action = $_GET['action'] ?? 'default';
             switch ($action) {
                 case 'listPosts':
-                    $this->frontendController->listPostsPublic();
+                    $this->frontendController->listPosts();
                     break;
                 case 'post':
                     if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -42,7 +42,7 @@ class Router
                     break;
                 case 'editpost':
                     if (isset($_GET['id']) && $_GET['id'] > 0) {
-                        $this->frontendController->editpost();
+                        $this->frontendController->editPost();
                     } else {
                         throw new \Exception('Aucun identifiant de billet envoyé');
                     }
@@ -54,14 +54,14 @@ class Router
 
                 case 'addComment':
                     if (isset($_GET['id']) && $_GET['id'] > 0) {
-                        $this->frontendController->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+                        $this->frontendController->addComment($_GET['id']);
                     } else {
                         throw new \Exception('Aucun identifiant de billet envoyé');
                     }
                     break;
 
                 case 'listPostsPublic':
-                    $this->frontendController->listPostsPublic();
+                    $this->frontendController->listPosts();
                     break;
                 case 'newpost':
                     $this->frontendController->newContent();

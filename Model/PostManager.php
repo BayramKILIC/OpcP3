@@ -4,11 +4,10 @@ namespace P3\Model;
 class PostManager extends Manager
 {
 
-    public function getPosts($status)
+    public function getPosts()
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creation_date_fr FROM chapter WHERE status=? ORDER BY creation_date');
-        $req->execute(array($status));
+        $req = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creation_date_fr FROM chapter ORDER BY creation_date');
         return $req;
     }
 
@@ -44,7 +43,7 @@ class PostManager extends Manager
     public function deletePost($postId)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('UPDATE chapter SET status="delete" WHERE id=?');
+        $req = $db->prepare('DELETE FROM chapter WHERE id=?');
         $affectedLines = $req->execute(array($postId));
 
         return $affectedLines;
@@ -53,7 +52,7 @@ class PostManager extends Manager
     public function editContent($contentId, $title, $content)
     {
         $db = $this->dbConnect();
-        $comments = $db->prepare('UPDATE chapter SET title=? , content=? , creation_date=NOW() WHERE id=?');
+        $comments = $db->prepare('UPDATE chapter SET title=? , content=? WHERE id=?');
         $affectedLines = $comments->execute(array($title, $content, $contentId));
 
         return $affectedLines;

@@ -23,6 +23,7 @@ while ($data = $posts->fetch())
         <em><a href="index.php?action=editpost&amp;id=<?= $data['id'] ?>">Modifier le chapitre</a></em> /
         <em><a href="index.php?action=deletepost&amp;id=<?= $data['id'] ?>">Supprimer le chapitre</a></em>
     </p>
+    <hr>
 
     <?php
 }

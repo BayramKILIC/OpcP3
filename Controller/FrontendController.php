@@ -35,10 +35,10 @@ class FrontendController extends Controller
         require('view/frontend/aboutme.php');
     }
 
-    public function listPostsPublic()
+    public function listPosts()
     {
 
-        $posts = $this->postManager->getPosts('public'); // Appel d'une fonction de cet objet
+        $posts = $this->postManager->getPosts(); // Appel d'une fonction de cet objet
 
         require('view/frontend/listPostsView.php');
     }
@@ -46,7 +46,7 @@ class FrontendController extends Controller
     public function listPostsPrivate()
     {
         $this->checkAuthentication();
-        $posts = $this->postManager->getPosts('public');
+        $posts = $this->postManager->getPosts();
 
         require('view/frontend/editContent.php');
     }
@@ -55,7 +55,7 @@ class FrontendController extends Controller
     {
         $this->checkAuthentication();
         if (empty($_POST['title']) || empty($_POST['content'])) {
-            $this->setFlashMessage('info', 'Veuillez remplir tout les champs');
+            $this->setFlashMessage('info', 'Veuillez remplir tous les champs');
         } else {
             $this->postManager->postContent($_POST['title'], $_POST['content']);
             $this->setFlashMessage('success', 'Votre chapitre a bien été publié');
@@ -63,7 +63,6 @@ class FrontendController extends Controller
         }
         require('view/frontend/newContent.php');
     }
-
 
 
     public function reportComment()
@@ -139,7 +138,7 @@ class FrontendController extends Controller
         }
     }
 
-    public function editpost()
+    public function editPost()
     {
         $this->checkAuthentication();
         $post = $this->postManager->getPost($_GET['id']);
@@ -147,6 +146,8 @@ class FrontendController extends Controller
         if (!empty($_POST['title']) && !empty($_POST['content'])) {
             $this->postManager->editContent($_GET['id'], $_POST['title'], $_POST['content']);
             return $this->redirect('listPostsPrivate');
+        } else {
+            $this->setFlashMessage('danger', 'Veuillez remplir tous les champs');
         }
 
         require('view/frontend/editpost.php');
@@ -166,22 +167,28 @@ class FrontendController extends Controller
     }
 
 
-    public function addComment($postId, $author, $comment)
+    public function addComment($postId)
     {
+        $author = $_POST['author'];
+        $comment = $_POST['comment'];
+
         if (!empty($author) and !empty($comment)) {
-            if (strlen($author) > 2 and strlen($comment) > 2) {
-                $affectedLines = $this->commentManager->postComment($postId, $author, $comment);
+            if (strlen($author) < 3 or strlen($comment) < 3) {
+                $this->setFlashMessage('danger', 'Nombre de caractère insuffisant');
+            } elseif ((strlen($author) > 100 or strlen($comment) > 300)) {
+                $this->setFlashMessage('danger', 'Nombre de caractère limite atteint');
+            } else {
+                $affectedLines = $this->commentManager->postComment($_GET['id'], $_POST['author'], $_POST['comment']);
                 if ($affectedLines === false) {
                     throw new \Exception('Impossible d\'ajouter le commentaire !');
                 } else {
                     $this->setFlashMessage('success', 'Votre commentaire a bien été enregistré');
                 }
-            } else {
-                $this->setFlashMessage('danger', 'Nombre de caractère insuffisant');
             }
         } else {
-            $this->setFlashMessage('danger', 'Veuillez remplir tout les champs');
+            $this->setFlashMessage('danger', 'Veuillez remplir tous les champs');
         }
         return $this->redirect('post', ['id' => $postId]);
     }
 }
+

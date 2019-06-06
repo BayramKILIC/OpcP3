@@ -40,7 +40,7 @@ while ($data = $comments->fetch())
     <?php
 }
 $comments->closeCursor();
-// TODO Inserer colonne date et numero de chapitre
+
 ?>
 
 

@@ -19,12 +19,11 @@
                         <p>
                             <?= $preview_content ?> [...]
 
-                            <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Lire le chapitre</a></em>
+                            <a href="index.php?action=post&amp;id=<?= $data['id'] ?>" class="btn btn-sm btn-outline-dark" role="button" aria-pressed="true">Lire le chapitre</a>
                         </p>
     <hr>
                     
                 <?php
-                    // todo regler grille menu et contenu
                 }
                 $posts->closeCursor();
                 ?>

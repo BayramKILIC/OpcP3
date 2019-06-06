@@ -26,7 +26,7 @@
 
         <div class="col-md-12">
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark mb-5">
-                <a class="navbar-brand" href="#">Billet simple pour l'Alaska</a>
+                <a class="navbar-brand" href="index.php">Billet simple pour l'Alaska</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -42,7 +42,7 @@
                             <a class="nav-link" href="index.php?action=aboutme">A propos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?action=login">Connexion</a>
+                            <a class="nav-link ml-3" href="index.php?action=login">Connexion</a>
                         </li>
                     </ul>
                 </div>
@@ -59,7 +59,7 @@
             <a href="index.php" class="btn btn-secondary btn-sm active mb-2" role="button" aria-pressed="true">Retour à la page d'accueuil</a>
             <a href="index.php?action=newpost" class="btn btn-secondary btn-sm active mb-2" role="button" aria-pressed="true">Ecrire un nouveau chapitre</a>
             <a href="index.php?action=changepassword" class="btn btn-secondary btn-sm active mb-2" role="button" aria-pressed="true">Changer mot de passe</a>
-            <a href="index.php?action=listPostsPrivate" class="btn btn-secondary btn-sm active mb-2" role="button" aria-pressed="true">Modifier un article</a>
+            <a href="index.php?action=listPostsPrivate" class="btn btn-secondary btn-sm active mb-2" role="button" aria-pressed="true">Modifier/Supprimer un article</a>
             <a href="index.php?action=showComment" class="btn btn-secondary btn-sm active mb-2" role="button" aria-pressed="true">Modérer les commentaires</a>
         </div>
         <div class="col-md-10 mt-5 mb-5">
@@ -74,11 +74,21 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
-            <nav class="navbar navbar-expand-md navbar-dark fixed-bottom bg-dark">
-                <p><a href="index.php?action=login">Se connecter</a> </p>
-                <p><a href="index.php?action=signout">Se déconnecter</a></p>
-            </nav>
+        <div class="col-md-12 mt-5">
+            <footer class="footer mt-auto py-3 fixed-bottom bg-dark">
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="text-muted text-center">Site conçu avec bootstrap.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="text-muted text-center"> Devellopement et Design : Bayram KILIC</p>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <a href="index.php?action=login" style="text-decoration:none; color:#000;">Se connecter</a>
+                        <a href="index.php?action=signout" style="text-decoration:none; color:#000;">Se déconnecter</a>
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
 

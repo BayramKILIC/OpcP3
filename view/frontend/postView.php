@@ -3,10 +3,10 @@
 <?php ob_start(); ?>
 
 
-    <h3>
+    <h2>
         <?= $post['title'] ?>
         <em>le <?= $post['creation_date_fr'] ?></em>
-    </h3>
+    </h2>
     
     <p>
         <?= $post['content'] ?>
@@ -24,7 +24,7 @@
         <textarea class="form-control mb-2" id="exampleFormControlTextarea1" rows="3" placeholder="Votre commentaire" name="comment"></textarea>
     </div>
     <div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
+        <button class="btn btn-lg btn-secondary btn-block" type="submit">Envoyer</button>
     </div>
 </form>
 
@@ -35,16 +35,17 @@ while ($data = $comment->fetch())
 
 ?>
               
-    <h3>
+    <h4>
         <?= htmlspecialchars($data['name']) ?>
         <em>le <?= $data['comment_date_fr'] ?></em>
-    </h3>
+    </h4>
     
     <p>
         <?= nl2br(htmlspecialchars($data['comment'])) ?>
 
     <em><a href="index.php?action=reportComment&amp;idcomment=<?= $data['id']?>&amp;id=<?=$post['id'] ?>">Signaler le commentaire</a></em>
     </p>
+    <hr>
                 <?php
 }
 ?>

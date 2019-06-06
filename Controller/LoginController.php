@@ -27,7 +27,7 @@ class LoginController extends Controller
                 $user = $this->loginManager->getLogin();
                 if ($_POST['login'] == $user['login'] && password_verify($_POST['password'], $user['password'])) {
                     $_SESSION['user'] = $user['login'];
-                    header('Location: index.php?action=admin');
+                    return $this->redirect('admin');
                 } else {
                     $this->setFlashMessage('danger', "Identifiants invalides");
                 }
@@ -59,14 +59,14 @@ class LoginController extends Controller
 
     public function changePassword()
     {
-        $oldpassword = $this->loginManager->getLogin();
+        $userInfo = $this->loginManager->getLogin();
 
         if (!empty($_POST['password']) && !empty($_POST['newpassword1']) && !empty($_POST['newpassword2'])) {
 
-            if (password_verify($_POST['password'], $oldpassword['password']) && $_POST['newpassword1'] == $_POST['newpassword2']) {
+            if (password_verify($_POST['password'], $userInfo['password']) && $_POST['newpassword1'] == $_POST['newpassword2']) {
                 $this->loginManager->changePassword($_POST['newpassword1']);
                 $this->setFlashMessage('success', 'Le mot de passe a été modifié');
-                header('Location: index.php?action=admin');
+                return $this->redirect('admin');
             } else {
                 $this->setFlashMessage('danger', 'Erreur mot de passe');
             }

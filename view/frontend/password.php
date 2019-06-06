@@ -23,7 +23,7 @@ $title = "Se connecter"; ?>
 
     </div>
     <div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Changer le mot de passe</button>
     </div>
 </form>
 

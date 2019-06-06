@@ -21,7 +21,7 @@
 <div class="row">
 <div class="col-lg-12 mb-5">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Billet simple pour l'Alaska</a>
+        <a class="navbar-brand" href="index.php">Billet simple pour l'Alaska</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -37,7 +37,7 @@
                     <a class="nav-link" href="index.php?action=aboutme">A propos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?action=login">Connexion</a>
+                    <a class="nav-link ml-3" href="index.php?action=login">Connexion</a>
                 </li>
             </ul>
         </div>
