@@ -25,11 +25,6 @@ $title = "Se connecter"; ?>
     <div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Changer le mot de passe</button>
     </div>
-</form>
-
-
-
-
 
 
 <?php $content = ob_get_clean(); ?>
