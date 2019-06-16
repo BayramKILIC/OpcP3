@@ -173,9 +173,9 @@ class FrontendController extends Controller
         $comment = $_POST['comment'];
 
         if (!empty($author) and !empty($comment)) {
-            if (strlen($author) < 3 or strlen($comment) < 3) {
+            if (strlen(trim($author)) < 3 or strlen(trim($comment)) < 3) {
                 $this->setFlashMessage('danger', 'Nombre de caractère insuffisant');
-            } elseif ((strlen($author) > 100 or strlen($comment) > 300)) {
+            } elseif ((strlen(trim($author)) > 100 or strlen(trim($comment)) > 3000)) {
                 $this->setFlashMessage('danger', 'Nombre de caractère limite atteint');
             } else {
                 $affectedLines = $this->commentManager->postComment($_GET['id'], $_POST['author'], $_POST['comment']);

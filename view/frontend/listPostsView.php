@@ -7,13 +7,13 @@
                 <?php
                 while ($data = $posts->fetch())
                 {
-                    $preview_content = substr($data['content'], 0, 600);
+                    $preview_content = substr(strip_tags($data['content']), 0, 900);
                 ?>
 
 
                         <h3>
                             <?= htmlspecialchars($data['title']) ?>
-                            <em>publié le <?= $data['creation_date_fr'] ?></em>
+                            <em>- publié le <?= $data['creation_date_fr'] ?></em>
                         </h3>
                         
                         <p>

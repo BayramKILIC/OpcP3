@@ -7,7 +7,7 @@
 while ($data = $posts->fetch())
 {
 
-    $preview_content = substr($data['content'], 0, 400);
+    $preview_content = substr(strip_tags($data['content']), 0, 400);
     ?>
 
 

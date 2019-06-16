@@ -46,15 +46,15 @@ class LoginController extends Controller
     {
         $this->checkAuthentication();
 
-        // TODO Creer le dashboard
-
         require('view/frontend/admin.php');
     }
 
     public function signout()
     {
+        $_SESSION = array();
+        session_destroy();
 
-        require('view/frontend/signout.php');
+        $this->redirect('');
     }
 
     public function changePassword()
