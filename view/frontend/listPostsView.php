@@ -11,10 +11,9 @@
                 ?>
 
 
-                        <h3>
-                            <?= htmlspecialchars($data['title']) ?>
-                            <em>- publié le <?= $data['creation_date_fr'] ?></em>
-                        </h3>
+                    <h3><?= htmlspecialchars($data['title']) ?><br/></h3>
+                    <h5>Publié le <?= $data['creation_date_fr'] ?></h5>
+
                         
                         <p>
                             <?= $preview_content ?> [...]
