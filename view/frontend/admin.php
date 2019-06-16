@@ -1,5 +1,3 @@
-<?php $title = "Page d'administration"; ?>
-
 <?php ob_start(); ?>
 
 

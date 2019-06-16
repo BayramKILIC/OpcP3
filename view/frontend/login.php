@@ -1,6 +1,3 @@
-<?php
-$title = "Se connecter"; ?>
-
 <?php ob_start(); ?>
 
 

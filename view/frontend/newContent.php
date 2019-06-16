@@ -1,5 +1,3 @@
-<?php $title = "Nouveau chapitre"; ?>
-
 <?php ob_start(); ?>
 <h1>Ecrire un nouveau chapitre!</h1>
 <p><a href="index.php">Retour à la page d'accueuil</a></p>

@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../bootstrap-4.0.0/favicon.ico">
-    <title>Roman en ligne</title>
+    <title>Billet simple pour l'Alaska</title>
     <link href="bootstrap-4.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

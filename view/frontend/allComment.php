@@ -1,5 +1,3 @@
-<?php $title = "Modérer les commentaires"; ?>
-
 <?php ob_start(); ?>
 
 <div class="row">

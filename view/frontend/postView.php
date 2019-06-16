@@ -1,4 +1,3 @@
-<?php $title = "Mon bLOG"; ?>
 
 <?php ob_start(); ?>
 

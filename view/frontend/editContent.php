@@ -1,5 +1,3 @@
-<?php $title = 'Modifier un article'; ?>
-
 <?php ob_start(); ?>
 <p><a href="index.php?action=admin">Retour à la page d'administration</a></p>
 
